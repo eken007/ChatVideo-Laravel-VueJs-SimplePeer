@@ -262,8 +262,7 @@ export default {
         sendEvent() {
             this.axios
                 .post("http://192.168.150.98:8000/api/" + "broadcast", this.sms)
-                .then(({ data }) => {
-                    console.log(data);
+                .then(() => {
                     this.sms.message = "";
                     this.hiddenInputName = true;
                 })
