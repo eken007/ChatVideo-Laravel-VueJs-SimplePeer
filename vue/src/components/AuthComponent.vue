@@ -31,12 +31,17 @@
         },
         methods:{
             connect(){
-                this.axios.post('http://192.168.150.183:8000/api/login',this.form)
+                this.axios.post(this.requestHttp + 'login',this.form)
                 .then(({data})=>{
                     localStorage.setItem('token',data.access_token.token)
                     this.$router.push('video-chat')
                 }).catch(e=>console.log(e))
             }
+        },
+        computed:{
+            requestHttp(){
+                return this.$store.state.api
+            },
         }
     }
 </script>

@@ -4,6 +4,7 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import './index.css'
+import store from "./store/store"
 import Echo from 'laravel-echo';
 
 window.Pusher = require('pusher-js');
@@ -11,7 +12,7 @@ window.Pusher = require('pusher-js');
 window.Echo = new Echo({
     broadcaster: 'pusher',
     key: "219a1f8debafbc8a8e08",
-    wsHost:'192.168.150.98',
+    wsHost:store.state.host,
     wsPort: 6001,
     cluster: "mt1",
     forceTLS: false,
@@ -24,4 +25,4 @@ window.Echo = new Echo({
     },
 });
 
-createApp(App).use(router).use(VueAxios, axios).mount('#app')
+createApp(App).use(router).use(VueAxios, axios).use(store).mount('#app')

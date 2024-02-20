@@ -102,7 +102,7 @@ export default {
         );
         this.music.loop = true
         await this.axios
-            .get("http://192.168.150.98:8000/api/get-user", {
+            .get(this.requestHttp + "get-user", {
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("token"),
                 },
@@ -164,7 +164,7 @@ export default {
                         console.log("SIGNAL", JSON.stringify(data));
                         this.axios
                         .post(
-                            "http://192.168.150.98:8000/api/warning",
+                            this.requestHttp + "warning",
                             { name: this.sms.name, id: message.id, signal: JSON.stringify(data) },
                             {
                                 headers: {
@@ -228,7 +228,7 @@ export default {
                         console.log("SIGNAL", JSON.stringify(data));
                      this.axios
                         .post(
-                            "http://192.168.150.98:8000/api/feedback",
+                            this.requestHttp + "feedback",
                             { emetteur: this.emetteur, signal: JSON.stringify(data) },
                             {
                                 headers: {
@@ -261,7 +261,7 @@ export default {
         },
         sendEvent() {
             this.axios
-                .post("http://192.168.150.98:8000/api/" + "broadcast", this.sms)
+                .post(this.requestHttp + "broadcast", this.sms)
                 .then(() => {
                     this.sms.message = "";
                     this.hiddenInputName = true;
@@ -269,6 +269,11 @@ export default {
                 .catch();
         },
     },
+    computed:{
+      requestHttp(){
+        return this.$store.state.api
+      },
+    }
 };
 </script>
   

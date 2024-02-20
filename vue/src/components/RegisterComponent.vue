@@ -62,7 +62,7 @@
             });
 
             window.campay.onSuccess = async ()=> {
-                await this.axios.post('http://192.168.150.98:8000/api/register',this.form)
+                await this.axios.post(this.requestHttp + 'register',this.form)
                 .then(({data})=> {localStorage.setItem('token',data.access_token.token)})
                 .catch(e => console.log(e))
                 document.querySelector('#myCamPayModal').remove()
@@ -75,6 +75,11 @@
             }
         }
            
+        },
+        computed:{
+            requestHttp(){
+                return this.$store.state.api
+            },
         }
     }
 </script>
