@@ -2,6 +2,8 @@ Avant d'utiliser le Project, rassurer vous d'avoir installé Wamp, Composer, Nod
 Configuration Laravel
 - Créer une base de données qui porte le nom chatcodex de type utf8mb4_general_ci
 - Accéder au projet Laravel avec le CMD ou le terminal de votre éditeur de texte
+- Acceder au fichier composer.json et ajouter "fruitcake/laravel-cors":"^2.0" dans le require
+- Supprimer le fichier composer.lock s'il existe et taper composer update
 - Taper la commande php artisan migrate
 - Taper la commande php artisan passport:install
 - Taper la commande php artisan db:seed (02 comptes utilisateur seront créé par défaut)
